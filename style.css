@@ -112,11 +112,18 @@ img {
   background: transparent;
   color: var(--texto);
   font-weight: 700;
+  min-height: 40px;
+  margin: 5px;
 }
 
 .btn.cart {
   border-color: var(--amarelo);
   color: var(--amarelo);
+}
+
+.btn.login {
+  border-color: var(--azul);
+  color: var(--azul);
 }
 
 .btn:hover {
@@ -125,6 +132,11 @@ img {
 
 .btn.cart:hover {
   background: var(--amarelo);
+  color: #000;
+}
+
+.btn.login:hover {
+  background: var(--azul);
   color: #000;
 }
 
