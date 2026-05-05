@@ -42,13 +42,14 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
         <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
           {isLoggedIn ? (
             <>
-              <span className="text-gray-400 font-body text-sm">
+              <span className="text-gray-400 font-body text-sm hidden md:inline">
                 Olá, <span className="text-yellow-400 font-bold">{user.name}</span>
               </span>
+
               <button
                 onClick={() => setCurrentPage('orders')}
                 className={`font-body text-sm uppercase tracking-wider transition-colors
-                  ${currentPage === 'orders'
+          ${currentPage === 'orders'
                     ? 'text-yellow-400'
                     : 'text-gray-400 hover:text-yellow-400'}`}
               >
@@ -161,6 +162,10 @@ function AppContent() {
   // Página inicial agora é 'home' (Hero)
   const [currentPage, setCurrentPage] = useState('home')
 
+  function handleOpenAuth() {
+    setAuthOpen(true)
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header
@@ -185,7 +190,11 @@ function AppContent() {
         </p>
       </footer>
 
-      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartDrawer
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        onAuthClick={handleOpenAuth}
+      />
       <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   )
