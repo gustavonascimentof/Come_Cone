@@ -9,7 +9,7 @@ import { createOrder } from '../../services/orderService.js'
 // Número do WhatsApp da loja — troque pelo número real!
 const STORE_WHATSAPP = '5515996963989'
 
-export default function CheckoutModal({ isOpen, onClose }) {
+export default function CheckoutModal({ isOpen, onClose, onAuthClick }) {
   const { items, totalPrice, clearCart } = useCart()
   const { isLoggedIn, user } = useAuth()
 
@@ -224,10 +224,15 @@ export default function CheckoutModal({ isOpen, onClose }) {
 
             {/* Aviso de login */}
             {!isLoggedIn && (
-              <div className="border border-yellow-400 border-opacity-30
-                bg-yellow-400 bg-opacity-5 px-4 py-3">
+              <div
+                onClick={onAuthClick}
+                className="border border-yellow-400 border-opacity-30
+  bg-yellow-400 bg-opacity-5 px-4 py-3
+  flex items-center justify-center gap-2
+  cursor-pointer hover:bg-opacity-10 transition"
+              >
                 <p className="text-yellow-400 font-body text-xs">
-                  ⚠️ Faça login para salvar seu histórico de pedidos.
+                  ⚠️ Faça login para realizar seu pedido.
                 </p>
               </div>
             )}
