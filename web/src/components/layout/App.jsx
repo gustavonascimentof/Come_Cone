@@ -17,11 +17,11 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
   return (
     <header className="border-b border-[#2a2a2a] py-4 px-6 sticky top-0 z-30
       bg-[#0a0a0a] bg-opacity-95 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
 
-        {/* Logo — volta para o início */}
+        {/* Logo — à esquerda */}
         <div
-          className="flex items-center gap-3 cursor-pointer"
+          className="flex items-center gap-3 cursor-pointer flex-shrink-0"
           onClick={() => setCurrentPage('home')}
         >
           <div
@@ -38,8 +38,8 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
           </div>
         </div>
 
-        {/* Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        {/* Nav — Desktop (centro) */}
+        <nav className="hidden md:flex items-center gap-6 flex-1 justify-center">
           {isLoggedIn ? (
             <>
               <span className="text-gray-400 font-body text-sm">
@@ -89,25 +89,66 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
           )}
         </nav>
 
-        {/* Carrinho — esconde no admin */}
-        {currentPage !== 'admin' && (
-          <button
-            onClick={onCartClick}
-            className="flex items-center gap-2 border border-yellow-400 px-3 py-2
-              hover:bg-yellow-400 hover:bg-opacity-10 transition-all"
-            style={{ boxShadow: '0 0 8px rgba(255,215,0,0.2)' }}
-          >
-            <span className="text-lg">🛒</span>
-            <span className={`
+        {/* Centro — Mobile (botão Entrar centralizado) */}
+        <div className="md:hidden flex-1 flex justify-center">
+          {/* Botão Entrar — Mobile (usuário não logado) */}
+          {!isLoggedIn && currentPage !== 'admin' && (
+            <button
+              onClick={onAuthClick}
+              className="bg-yellow-400 text-black font-arcade text-[9px] px-3 py-2
+                hover:bg-yellow-300 transition-all hover:scale-105 active:scale-95"
+              style={{
+                clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))'
+              }}
+            >
+              Entrar
+            </button>
+          )}
+
+          {/* Menu Usuário — Mobile (usuário logado) */}
+          {isLoggedIn && currentPage !== 'admin' && (
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage('orders')}
+                className="text-yellow-400 hover:text-yellow-300 text-sm font-arcade"
+              >
+                📋
+              </button>
+              {isAdmin && (
+                <button
+                  onClick={() => setCurrentPage(
+                    currentPage === 'admin' ? 'home' : 'admin'
+                  )}
+                  className="text-yellow-400 hover:text-yellow-300 text-sm font-arcade"
+                >
+                  ⚙
+                </button>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Ações — à direita (carrinho) */}
+        <div className="flex items-center gap-2 flex-shrink-0">
+          {/* Carrinho — esconde no admin */}
+          {currentPage !== 'admin' && (
+            <button
+              onClick={onCartClick}
+              className="flex items-center gap-2 border border-yellow-400 px-3 py-2
+                hover:bg-yellow-400 hover:bg-opacity-10 transition-all"
+              style={{ boxShadow: '0 0 8px rgba(255,215,0,0.2)' }}
+            >
+              <span className="text-lg">🛒</span>
+              <span className={`
               bg-yellow-400 text-black font-arcade text-[9px] w-5 h-5 rounded-full
               flex items-center justify-center font-bold transition-transform duration-200
               ${totalItems > 0 ? 'scale-100' : 'scale-0'}
             `}>
-              {totalItems}
-            </span>
-          </button>
-        )}
-
+                {totalItems}
+              </span>
+            </button>
+          )}
+        </div>
       </div>
     </header>
   )
