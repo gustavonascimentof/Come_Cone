@@ -14,7 +14,7 @@ const TEST_ITEM = {
   image: 'https://via.placeholder.com/150?text=Cone+de+Teste',
 }
 
-export default function CartDrawer({ isOpen, onClose, onAuthRequired }) {
+export default function CartDrawer({ isOpen, onClose, onAuthClick }) {
   const { items, removeItem, updateQuantity, totalPrice, addItem } = useCart()
   const { isLoggedIn } = useAuth()
   const [checkoutOpen, setCheckoutOpen] = useState(false)
@@ -156,11 +156,12 @@ export default function CartDrawer({ isOpen, onClose, onAuthRequired }) {
 
           {/* Botão finalizar */}
           <button
+            disabled={!isLoggedIn || items.length === 0}
             onClick={() => {
               onClose()        // Fecha o drawer
               setTimeout(() => setCheckoutOpen(true), 300) // Abre o checkout
             }}
-            disabled={items.length === 0}
+
             className="w-full bg-green-500 hover:bg-green-400 text-black
               font-arcade text-[10px] py-4 transition-all
               hover:scale-[1.02] active:scale-95
@@ -170,6 +171,21 @@ export default function CartDrawer({ isOpen, onClose, onAuthRequired }) {
             <span>📱</span> FINALIZAR PEDIDO
           </button>
 
+          {!isLoggedIn && (
+            <div
+              onClick={onAuthClick}
+              className="border border-yellow-400 border-opacity-30
+    bg-yellow-400 bg-opacity-5 px-4 py-3
+    flex items-center justify-center gap-2
+    cursor-pointer hover:bg-opacity-10 transition
+    hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <p className="text-yellow-400 font-body text-xs">
+                ⚠️ Faça login para realizar seu pedido.
+              </p>
+            </div>
+          )}
+
         </div>
       </div>
 
@@ -177,7 +193,7 @@ export default function CartDrawer({ isOpen, onClose, onAuthRequired }) {
       <CheckoutModal
         isOpen={checkoutOpen}
         onClose={() => setCheckoutOpen(false)}
-        onAuthClick={onAuthRequired}
+        onAuthClick={onAuthClick}
       />
     </>
   )

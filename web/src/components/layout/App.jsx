@@ -38,17 +38,17 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
           </div>
         </div>
 
-        {/* Nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="flex items-center gap-6">
           {isLoggedIn ? (
             <>
-              <span className="text-gray-400 font-body text-sm">
+              <span className="text-gray-400 font-body text-sm hidden md:inline">
                 Olá, <span className="text-yellow-400 font-bold">{user.name}</span>
               </span>
+
               <button
                 onClick={() => setCurrentPage('orders')}
                 className={`font-body text-sm uppercase tracking-wider transition-colors
-                  ${currentPage === 'orders'
+          ${currentPage === 'orders'
                     ? 'text-yellow-400'
                     : 'text-gray-400 hover:text-yellow-400'}`}
               >
@@ -79,12 +79,13 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
             <button
               onClick={onAuthClick}
               className="bg-yellow-400 text-black font-arcade text-[9px] px-4 py-2
-                hover:bg-yellow-300 transition-all hover:scale-105 active:scale-95"
+      hover:bg-yellow-300 transition-all hover:scale-105 active:scale-95"
               style={{
-                clipPath: 'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))'
+                clipPath:
+                  'polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px))'
               }}
             >
-              Entrar
+              ENTRAR
             </button>
           )}
         </nav>
@@ -120,6 +121,10 @@ function AppContent() {
   // Página inicial agora é 'home' (Hero)
   const [currentPage, setCurrentPage] = useState('home')
 
+  function handleOpenAuth() {
+    setAuthOpen(true)
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header
@@ -144,7 +149,11 @@ function AppContent() {
         </p>
       </footer>
 
-      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <CartDrawer
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        onAuthClick={handleOpenAuth}
+      />
       <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   )
