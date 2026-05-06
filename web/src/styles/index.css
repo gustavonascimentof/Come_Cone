@@ -72,4 +72,26 @@
     from { border-radius: 50%; }
     to   { border-radius: 50% 50% 50% 0%; }
   }
+
+    /* Pac-Man — classe dedicada para a animação funcionar corretamente */
+  .pac-man {
+    width: 40px;
+    height: 40px;
+    background-color: #FFD700;
+    border-radius: 50% 50% 50% 0%;
+    animation: chomp 0.4s infinite alternate;
+  }
+
+  .pac-man-sm {
+    width: 24px;
+    height: 24px;
+    background-color: #FFD700;
+    border-radius: 50% 50% 50% 0%;
+    animation: chomp 0.4s infinite alternate;
+  }
+
+  @keyframes chomp {
+    from { border-radius: 50%; }
+    to   { border-radius: 50% 50% 50% 0%; }
+  }
 }

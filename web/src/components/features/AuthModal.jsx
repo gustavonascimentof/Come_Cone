@@ -72,8 +72,7 @@ export default function AuthModal({ isOpen, onClose }) {
           <div className="flex items-center gap-3">
             {/* Mini Pac-Man decorativo */}
             <div
-              className="w-6 h-6 bg-yellow-400"
-              style={{ borderRadius: '50% 50% 50% 0%' }}
+              className="pac-man-sm"
             />
             <h2 className="font-arcade text-yellow-400 text-sm">
               {tab === 'login' ? 'ENTRAR' : 'CADASTRAR'}
