@@ -13,15 +13,13 @@ import orderRoutes from './routes/order.routes.js'
 // Carrega as variáveis do arquivo .env
 dotenv.config()
 
+
 const app = express()
 const PORT = process.env.PORT || 3333
 
 // ── MIDDLEWARES GLOBAIS ──────────────────────────────
 // Permite requisições do frontend (React)
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://projeto-web-one.vercel.app'], // URL do frontend Vite
-  credentials: true,
-}))
+app.use(cors())
 
 // Permite receber JSON no corpo das requisições
 app.use(express.json())
@@ -43,7 +41,7 @@ app.get('/api/health', (req, res) => {
 // ── CONEXÃO COM O BANCO ──────────────────────────────
 mongoose
   
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB conectado!')
     // Só inicia o servidor após conectar ao banco
