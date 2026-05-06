@@ -3,13 +3,11 @@
 
 import axios from 'axios'
 
+const API_URL = import.meta.env.VITE_API_URL
+
 // Cria uma instância do axios com configurações padrão
 const api = axios.create({
-  // URL base do backend — todas as requisições começam aqui
-  baseURL: 'http://localhost:3333/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: `${API_URL}/api`,
 })
 
 // INTERCEPTOR DE REQUISIÇÃO

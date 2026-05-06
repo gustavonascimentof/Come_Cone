@@ -40,13 +40,13 @@ export default function CheckoutModal({ isOpen, onClose }) {
       .join('\n')
 
     return encodeURIComponent(
-      `🍦 *NOVO PEDIDO — CONE TRUFADO*\n\n` +
-      `👤 *Cliente:* ${user?.name || 'Visitante'}\n` +
-      `📱 *WhatsApp:* ${formData.whatsapp}\n` +
-      `📍 *Local de entrega:* ${formData.deliveryLocation}\n` +
-      (formData.note ? `📝 *Obs:* ${formData.note}\n` : '') +
+      `*NOVO PEDIDO — COME CONE*\n\n` +
+      `*Cliente:* ${user?.name || 'Visitante'}\n` +
+      `*WhatsApp:* ${formData.whatsapp}\n` +
+      `*Local de entrega:* ${formData.deliveryLocation}\n` +
+      (formData.note ? `*Obs:* ${formData.note}\n` : '') +
       `\n*Itens do pedido:*\n${itemsList}\n\n` +
-      `💰 *Total: R$ ${formatPrice(totalPrice)}*`
+      `*Total: R$ ${formatPrice(totalPrice)}*`
     )
   }
 
@@ -261,11 +261,7 @@ export default function CheckoutModal({ isOpen, onClose }) {
             {/* Ícone de sucesso animado */}
             <div className="flex justify-center">
               <div
-                className="w-20 h-20 bg-yellow-400"
-                style={{
-                  borderRadius: '50% 50% 50% 0%',
-                  animation: 'chomp 0.4s infinite alternate'
-                }}
+                className="pac-man"
               />
             </div>
 
