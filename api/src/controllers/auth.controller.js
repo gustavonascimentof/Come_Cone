@@ -20,7 +20,7 @@ function generateToken(user) {
 // POST /api/auth/register — Cadastrar novo usuário
 export async function register(req, res) {
   try {
-    const { name, email, password, phone } = req.body
+    const { name, email, password, phone, role } = req.body
 
     // Verifica se já existe usuário com esse email
     const existingUser = await User.findOne({ email })
@@ -41,6 +41,7 @@ export async function register(req, res) {
       email,
       password: hashedPassword,
       phone,
+      role: role || 'user',
     })
 
     // Gera o token para o usuário já ficar logado após cadastro
