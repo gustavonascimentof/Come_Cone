@@ -73,10 +73,7 @@ export default function CartDrawer({ isOpen, onClose, onAuthClick }) {
           {/* Carrinho vazio */}
           {items.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4">
-              <div
-                className="w-16 h-16 bg-yellow-400 opacity-30"
-                style={{ borderRadius: '50% 50% 50% 0%' }}
-              />
+              <img src="/src/assets/Pac_man_logo.png" alt="Logo" className="w-10 h-10 object-contain" />
               <p className="font-arcade text-[10px] text-gray-600 leading-relaxed">
                 SEU CARRINHO<br />ESTÁ VAZIO
               </p>

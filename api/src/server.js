@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3333
 // ── MIDDLEWARES GLOBAIS ──────────────────────────────
 // Permite requisições do frontend (React)
 app.use(cors({
-  origin: 'http://localhost:5173', // URL do frontend Vite
+  origin: ['http://localhost:5173', 'https://projeto-web-one.vercel.app'], // URL do frontend Vite
   credentials: true,
 }))
 
@@ -42,7 +42,8 @@ app.get('/api/health', (req, res) => {
 
 // ── CONEXÃO COM O BANCO ──────────────────────────────
 mongoose
-  .connect(process.env.MONGODB_URI)
+  
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('✅ MongoDB conectado!')
     // Só inicia o servidor após conectar ao banco

@@ -24,9 +24,7 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
           className="flex items-center gap-3 cursor-pointer flex-shrink-0"
           onClick={() => setCurrentPage('home')}
         >
-          <div
-            className="w-10 h-10 bg-yellow-400 pac-man"
-          />
+          <img src="/src/assets/Pac_man_logo.png" alt="Logo" className="w-10 h-10 object-contain" />
           <div>
             <h1 className="font-arcade text-yellow-400 text-sm leading-tight"
               style={{ textShadow: '0 0 10px rgba(255,215,0,0.7)' }}>
