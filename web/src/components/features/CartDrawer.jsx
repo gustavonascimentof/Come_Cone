@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useCart } from '../../context/CartContext'
 import { useAuth } from '../../context/AuthContext'
 import CheckoutModal from './CheckoutModal'
+import pacmanLogo from '../../assets/Pac_man_logo.png'
 
 // Item de teste (fora do componente para evitar recreação)
 const TEST_ITEM = {
@@ -73,7 +74,7 @@ export default function CartDrawer({ isOpen, onClose, onAuthClick }) {
           {/* Carrinho vazio */}
           {items.length === 0 && (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4">
-              <img src="/src/assets/Pac_man_logo.png" alt="Logo" className="w-10 h-10 object-contain" />
+              <img src={pacmanLogo} alt="Logo" className="w-10 h-10 object-contain" />
               <p className="font-arcade text-[10px] text-gray-600 leading-relaxed">
                 SEU CARRINHO<br />ESTÁ VAZIO
               </p>
