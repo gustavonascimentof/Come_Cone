@@ -9,6 +9,7 @@ import Admin from '../../pages/Admin'
 import MyOrders from '../../pages/MyOrders'
 import CartDrawer from '../features/CartDrawer'
 import AuthModal from '../features/AuthModal'
+import pacmanLogo from '../../assets/Pac_man_logo.png'
 
 function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
   const { totalItems } = useCart()
@@ -24,7 +25,7 @@ function Header({ onCartClick, onAuthClick, currentPage, setCurrentPage }) {
           className="flex items-center gap-3 cursor-pointer flex-shrink-0"
           onClick={() => setCurrentPage('home')}
         >
-          <img src="/src/assets/Pac_man_logo.png" alt="Logo" className="w-10 h-10 object-contain" />
+          <img src={pacmanLogo} alt="Logo" className="w-10 h-10 object-contain" />
           <div>
             <h1 className="font-arcade text-yellow-400 text-sm leading-tight"
               style={{ textShadow: '0 0 10px rgba(255,215,0,0.7)' }}>
