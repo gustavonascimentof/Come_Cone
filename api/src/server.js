@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import authRoutes from './routes/auth.routes.js'  
+import authRoutes from './routes/auth.routes.js'
 import productRoutes from './routes/product.routes.js'
 import orderRoutes from './routes/order.routes.js'
 
@@ -19,13 +19,16 @@ const PORT = process.env.PORT || 3333
 
 // ── MIDDLEWARES GLOBAIS ──────────────────────────────
 // Permite requisições do frontend (React)
-app.use(cors())
+app.use(cors({
+  origin: 'https://projeto-fbsginogk-alvaro-figueiredos-projects.vercel.app',
+  credentials: true
+}))
 
 // Permite receber JSON no corpo das requisições
 app.use(express.json())
 
 // ── ROTAS ────────────────────────────────────────────
-app.use('/api/auth', authRoutes)   
+app.use('/api/auth', authRoutes)
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
 
@@ -40,7 +43,7 @@ app.get('/api/health', (req, res) => {
 
 // ── CONEXÃO COM O BANCO ──────────────────────────────
 mongoose
-  
+
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('✅ MongoDB conectado!')
