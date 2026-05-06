@@ -6,26 +6,10 @@ import { useAuth } from '../../context/AuthContext'
 import CheckoutModal from './CheckoutModal'
 import pacmanLogo from '../../assets/Pac_man_logo.png'
 
-// Item de teste (fora do componente para evitar recreação)
-const TEST_ITEM = {
-  id: 'test-cone',
-  name: 'Cone de Teste',
-  price: 15.00,
-  quantity: 1,
-  image: 'https://via.placeholder.com/150?text=Cone+de+Teste',
-}
-
 export default function CartDrawer({ isOpen, onClose, onAuthClick }) {
-  const { items, removeItem, updateQuantity, totalPrice, addItem } = useCart()
+  const { items, removeItem, updateQuantity, totalPrice } = useCart()
   const { isLoggedIn } = useAuth()
   const [checkoutOpen, setCheckoutOpen] = useState(false)
-
-  // Adiciona item de teste se o carrinho estiver vazio (para fins de teste)
-  React.useEffect(() => {
-    if (isOpen && items.length === 0 && isLoggedIn) {
-      addItem(TEST_ITEM)
-    }
-  }, [isOpen, items.length, isLoggedIn, addItem])
 
   function formatPrice(value) {
     return value.toFixed(2).replace('.', ',')
