@@ -6,11 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
-    "dev:web": "cd web && vite",
+    "dev:web": "vite",
     "dev:api": "cd api && nodemon src/server.js",
-    "build": "cd web && vite build",
-    "preview": "cd web && vite preview",
-    "lint": "cd web && eslint .",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
     "start": "cd api && node src/server.js"
   },
   "dependencies": {
