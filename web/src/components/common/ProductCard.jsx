@@ -26,11 +26,11 @@ export default function ProductCard({ product }) {
     ">
 
       {/* Imagem do produto */}
-      <div className="relative overflow-hidden bg-[#111] aspect-square">
+      <div className="relative overflow-hidden bg-[#111] aspect-[738/1600]">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
         />
 
         {/* Badge de destaque (opcional) */}
